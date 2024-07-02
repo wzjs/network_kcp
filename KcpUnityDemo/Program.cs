@@ -64,12 +64,17 @@ namespace KcpUnityDemo
             Console.WriteLine("Start client");
             Task.Run(() =>
             {
-                for (int i = 0; i < 1000; i++)
+                Console.WriteLine("Start client");
+                Task.Run(() =>
                 {
-                    NetworkClient networkClient = new NetworkClient();
-                    Debug.Log("client numbern :" + i);
-                    Task.Delay(100);
-                }
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        NetworkClient networkClient = new NetworkClient();
+                        Debug.Log("client numbern :" + i);
+                        Task.Delay(100);
+                    }
+                });
+
             });
             Console.ReadLine();
 

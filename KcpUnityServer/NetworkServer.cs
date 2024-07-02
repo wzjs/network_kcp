@@ -13,7 +13,7 @@ namespace KcpUnityServer
     public class NetworkServer
     {
         private static EndPoint localPoint = new IPEndPoint(IPAddress.Any, 5001);
-        private KCPService service;
+        private TCPService service;
         private MessageHandle messageHandle;
         public NetworkServer()
         {
@@ -23,13 +23,9 @@ namespace KcpUnityServer
 
         public void StartServer()
         {
-            service = new KCPService(localPoint);
-            service.ReadCallback = (id, data) =>
-            {
-                var recv = Recv(data);
-                messageHandle.ProcessHandle(recv, id);
-                
-            };
+            service = new TCPService(true);
+            service.ConnectCallBack = OnConnect;
+            service.Accept();
             Task.Run(async () => {
                 while (true)
                 {
@@ -40,16 +36,36 @@ namespace KcpUnityServer
             Console.ReadLine();
         }
 
+        private void OnConnect(long id)
+        {
+            Debug.Log("Receive one connect id:" + id);
+            service.Receive(id, (b, l, e) =>
+                {
+                    OnReceive(b, l, e, id);
+                }
+            );
+        }
+
         public void Send<T>(T data,long channelId) where T : IMessage
         {
             byte[] buffer = MessageSerializeHelper.Serialize(data);
-            service.Send(channelId, buffer);
+            service.Send(channelId, (writer) =>
+            {
+                writer.Write(buffer);
+            });
         }
 
-        public object Recv(byte[] data)
+        private void OnReceive(BinaryReader binaryReader, int length, bool isEncrypt,long channelId)
         {
-            var obj = MessageSerializeHelper.Deserialize(data);
-            return obj;
+            if (isEncrypt)
+            {
+            }
+            else
+            {
+                byte[] data = binaryReader.ReadBytes(length);
+                var message = MessageSerializeHelper.Deserialize(data);
+                messageHandle.ProcessHandle(message, channelId);
+            }
         }
     }
 }

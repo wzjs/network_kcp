@@ -13,9 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestServer", "TestServer\Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "TestClient\TestClient.csproj", "{33EDDE6D-CF5A-45A0-AF4C-E5D084DDE7E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KcpUnityDemo", "KcpUnityDemo\KcpUnityDemo.csproj", "{FD6654D8-4552-4921-965E-D801B2DCAD13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KcpUnityDemo", "KcpUnityDemo\KcpUnityDemo.csproj", "{FD6654D8-4552-4921-965E-D801B2DCAD13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KcpUnityServer", "KcpUnityServer\KcpUnityServer.csproj", "{44542895-DF8C-4822-9B77-C0BCA34106E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KcpUnityServer", "KcpUnityServer\KcpUnityServer.csproj", "{44542895-DF8C-4822-9B77-C0BCA34106E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{840280A7-2406-41B1-A15A-71D4BA079811}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

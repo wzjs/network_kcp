@@ -10,7 +10,7 @@ namespace KcpUnityDemo
     public abstract class NetService : IDisposable
     {
         public Action<long> ConnectCallBack;
-        public Action<long, byte[]> ReadCallback;
+        public Action<long, byte[]> ReceiveCallback;
         public Action<long, int> ErrorCallback;
 
         public abstract void Send(long channelId, byte[] data);

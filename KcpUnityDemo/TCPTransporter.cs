@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 
 namespace KcpUnityDemo
 {
-    public class TCPTransporter : IKCP
+    public class TCPTransporter : ITransporter
     {
+        private readonly Socket _socket;
+        public TCPTransporter()
+        {
+
+        }
         public int Available()
         {
             throw new NotImplementedException();
@@ -17,7 +22,7 @@ namespace KcpUnityDemo
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
 
         public int Recv(byte[] data, ref EndPoint endPoint)

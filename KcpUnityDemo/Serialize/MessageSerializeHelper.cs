@@ -51,7 +51,7 @@ namespace KcpUnityDemo.Serialize
             var dataType = message.GetType();
             byte[] buffer = MessagePackSerializer.Serialize(dataType,message);
             var result = new byte[buffer.Length + MessageIdSize];
-            buffer.CopyTo(result, 2);
+            buffer.CopyTo(result, MessageIdSize);
             var messageId = MessageMapCenter.GetMessageId(dataType);
             if (messageId != 0)
             {

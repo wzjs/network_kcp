@@ -23,7 +23,7 @@ namespace KcpUnityDemo
         private readonly Dictionary<long, KCPChannel> localConvChannels = new();
         private readonly Dictionary<long, KCPChannel> waitAcceptChannels = new();
 
-        private IKCP transporter;
+        private UDPTransporter transporter;
         private byte[] cache = new byte[2048];
         private readonly long startTime;
 
@@ -36,7 +36,7 @@ namespace KcpUnityDemo
             }
         }
 
-        public IKCP Transporter
+        public UDPTransporter Transporter
         {
             get { return transporter; }
         }

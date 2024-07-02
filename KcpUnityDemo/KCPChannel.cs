@@ -40,11 +40,10 @@ namespace KcpUnityDemo
 
         public readonly uint CreateTime;
 
-        public KCPChannel(uint localConn, IPEndPoint remoteEndPoint, KCPService kService)
+        public KCPChannel(uint localConn, IPEndPoint remoteEndPoint, KCPService kService):base(localConn,ChannelType.Connect,kService)
         {
             this.service = kService;
             this.LocalConv = localConn;
-            this.ChannelType = ChannelType.Connect;
 
             Debug.Log($"channel create: {this.LocalConv} {remoteEndPoint} {this.ChannelType}");
 
@@ -56,7 +55,7 @@ namespace KcpUnityDemo
         }
 
         // accept
-        public KCPChannel(uint localConn, uint remoteConn, IPEndPoint remoteEndPoint, KCPService kService)
+        public KCPChannel(uint localConn, uint remoteConn, IPEndPoint remoteEndPoint, KCPService kService) : base(localConn, ChannelType.Accept,kService)
         {
             service = kService;
             ChannelType = ChannelType.Accept;
@@ -158,7 +157,7 @@ namespace KcpUnityDemo
             if(buffer != null)
             {
                 var s = buffer.Memory.Span.Slice(0, avalidLength).ToArray();
-                service.ReadCallback(LocalConv, s);
+                service.ReceiveCallback(LocalConv, s);
             }
 
         }

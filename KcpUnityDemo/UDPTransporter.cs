@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KcpUnityDemo
 {
-    public class UDPTransporter : IKCP
+    public class UDPTransporter : ITransporter
     {
         private readonly Socket socket;
 
